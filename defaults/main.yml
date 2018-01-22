@@ -1,0 +1,24 @@
+---
+# What version of the homeassistant/home-assistant docker image should we
+# install?
+home_assistant_docker_version: 0.61.1
+
+# A list of key/value pairs, suitable for being a reference secrets file
+# to be referenced by home-assistant's configuration file.
+# see https://home-assistant.io/docs/configuration/secrets/
+home_assistant_config_secrets: []
+# - somepassword: sekret
+
+# This yaml object's contents is verbatim converted into the configuration.yaml
+# config file, with the exception that "!" commands like !secret and !include
+# need to be escaped like \!secret and \!include.
+home_assistant_configuration: []
+  # homeassistant:
+  #   name: HomePlace
+  #   latitude: 60.0000
+  #   longitude: -120.0000
+  #   elevation: 1000
+  #   unit_system: imperial
+  #   time_zone: America/Los_Angeles
+  # http:
+  #   api_password: \!secret somepassword

@@ -1,0 +1,26 @@
+---
+- name: Ensure Docker-related python packages are present
+  pip: name=docker
+
+- name: Ensure the home-assistant config directory is present
+  file: path=/etc/home-assistant state=directory mode=0755
+
+- name: Ensure the home-assistant secrets file is in place
+  template: src=secrets.yaml.j2 dest=/etc/home-assistant/secrets.yaml mode=0600
+  register: _home_assistant_config_file
+
+- name: Ensure the home-assistant config file is in place
+  template: src=configuration.yaml.j2 dest=/etc/home-assistant/configuration.yaml mode=0600
+  register: _home_assistant_config_file
+
+- name: Ensure the home-assistant docker container is created and started
+  docker_container:
+    name: home-assistant
+    image: "homeassistant/home-assistant:{{ home_assistant_docker_version }}"
+    restart: "{{ _home_assistant_config_file.changed }}"
+    restart_policy: always
+    ports:
+      - "8123:8123" # Web admin panel
+    volumes:
+      - "/etc/home-assistant:/config"
+      - "/etc/localtime:/etc/localtime:ro"

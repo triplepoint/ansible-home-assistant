@@ -1,0 +1,2 @@
+---
+{{ home_assistant_configuration | to_nice_yaml | regex_replace('\\\\(!secret|!include)', '\\1') }}

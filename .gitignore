@@ -1,0 +1,8 @@
+.git
+*.py[cod]
+*.retry
+__pycache__
+.cache/
+.molecule/
+.tox/
+.vagrant/

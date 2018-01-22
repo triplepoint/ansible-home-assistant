@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  author: Jonathan Hanson
+  description: A deployment role for Home-Assistant.io.
+  license: MIT
+  min_ansible_version: 2.4
+  platforms:
+    - name: Ubuntu
+      versions:
+        - xenial
+  galaxy_tags:
+    - homeassistant
+    - homeautomation
+dependencies: []
