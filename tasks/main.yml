@@ -7,6 +7,7 @@
 
 - name: Ensure the home-assistant secrets file is in place
   template: src=secrets.yaml.j2 dest=/etc/home-assistant/secrets.yaml mode=0600
+  no_log: True
   register: _home_assistant_config_file
 
 - name: Ensure the home-assistant config file is in place
