@@ -32,9 +32,6 @@ provisioner:
           http:
             api_password: \!secret test_secret_b
 
-  config_options:
-    ssh_connection:
-      pipelining: True
   lint:
     name: ansible-lint
 scenario:
