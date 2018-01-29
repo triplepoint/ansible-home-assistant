@@ -1,0 +1,13 @@
+---
+- name: restart home-assistant
+  docker_container:
+    name: home-assistant
+    image: "homeassistant/home-assistant:{{ home_assistant_docker_version }}"
+    state: started
+    restart: yes
+    restart_policy: always
+    ports:
+      - "8123:8123" # Web admin panel
+    volumes:
+      - "/etc/home-assistant:/config"
+      - "/etc/localtime:/etc/localtime:ro"
