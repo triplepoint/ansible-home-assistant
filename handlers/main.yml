@@ -6,6 +6,7 @@
     state: started
     restart: yes
     restart_policy: always
+    timeout: 300
     ports:
       - "8123:8123" # Web admin panel
     volumes:
