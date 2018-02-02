@@ -8,7 +8,7 @@
     restart_policy: always
     timeout: 300
     ports:
-      - "8123:8123" # Web admin panel
+      - "{{ home_assistant_server_port }}:8123" # Web admin panel
     volumes:
       - "/etc/home-assistant:/config"
       - "/etc/localtime:/etc/localtime:ro"
