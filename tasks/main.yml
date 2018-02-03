@@ -13,3 +13,16 @@
 - name: Ensure the home-assistant config file is in place
   template: src=configuration.yaml.j2 dest=/etc/home-assistant/configuration.yaml mode=0600
   notify: restart home-assistant
+
+- name: ensure home-assistant is started
+  docker_container:
+    name: home-assistant
+    image: "homeassistant/home-assistant:{{ home_assistant_docker_version }}"
+    state: started
+    restart_policy: always
+    timeout: 300
+    ports:
+      - "{{ home_assistant_server_port }}:8123" # Web admin panel
+    volumes:
+      - "/etc/home-assistant:/config"
+      - "/etc/localtime:/etc/localtime:ro"
