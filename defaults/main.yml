@@ -15,6 +15,12 @@ home_assistant_config_secrets: []
 # is no need to pass the `http.server_port` directive in the HA config file.
 home_assistant_server_port: 8123
 
+# A list of additional volumes to mount into the docker container.  This is
+# useful for things like SSL certificates and custom css/image assets.
+home_assistant_additional_volumes: []
+# - "/some/directory:/some/mount:ro"
+# - "/some/file.yml:/some/mount/file.yml:ro"
+
 # This yaml object's contents is verbatim converted into the configuration.yaml
 # config file, with the exception that "!" commands like !secret and !include
 # need to be escaped like \!secret and \!include.

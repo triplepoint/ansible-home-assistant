@@ -14,6 +14,16 @@
   template: src=configuration.yaml.j2 dest=/etc/home-assistant/configuration.yaml mode=0600
   notify: restart home-assistant
 
+- name: Define the default home-assistant docker volumes
+  set_fact:
+    _home_assistant_docker_volumes:
+      - "/etc/home-assistant:/config"
+      - "/etc/localtime:/etc/localtime:ro"
+
+- name: Append any additional volume mounts
+  set_fact:
+    _home_assistant_docker_volumes: "{{ _home_assistant_docker_volumes }} + {{ home_assistant_additional_volumes }}"
+
 - name: ensure home-assistant is started
   docker_container:
     name: home-assistant
@@ -23,6 +33,4 @@
     timeout: 300
     ports:
       - "{{ home_assistant_server_port }}:8123" # Web admin panel
-    volumes:
-      - "/etc/home-assistant:/config"
-      - "/etc/localtime:/etc/localtime:ro"
+    volumes: "{{ _home_assistant_docker_volumes }}"
