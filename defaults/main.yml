@@ -21,6 +21,10 @@ home_assistant_additional_volumes: []
 # - "/some/directory:/some/mount:ro"
 # - "/some/file.yml:/some/mount/file.yml:ro"
 
+# A key/value set of environment variables and their values, which will be
+# set on the docker container.
+home_assistant_environment_variables: {}
+
 # This yaml object's contents is verbatim converted into the configuration.yaml
 # config file, with the exception that "!" commands like !secret and !include
 # need to be escaped like \!secret and \!include.

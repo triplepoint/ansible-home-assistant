@@ -34,3 +34,4 @@
     ports:
       - "{{ home_assistant_server_port }}:8123" # Web admin panel
     volumes: "{{ _home_assistant_docker_volumes }}"
+    env: "{{ home_assistant_environment_variables }}"
