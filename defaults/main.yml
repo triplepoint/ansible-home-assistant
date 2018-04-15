@@ -1,7 +1,7 @@
 ---
 # What version of the homeassistant/home-assistant docker image should we
 # install?
-home_assistant_docker_version: 0.64.3
+home_assistant_docker_version: 0.67.0
 
 # A list of key/value pairs, suitable for being a reference secrets file
 # to be referenced by home-assistant's configuration file.
