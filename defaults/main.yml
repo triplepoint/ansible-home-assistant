@@ -9,12 +9,6 @@ home_assistant_docker_version: 0.67.0
 home_assistant_config_secrets: []
 # - somepassword: sekret
 
-# The port on which the home-assistant docker container will listen.
-# Note that this is just the host's mapped port - the home-assistant service
-# inside the docker container will still listen on 8123 (its default), so there
-# is no need to pass the `http.server_port` directive in the HA config file.
-home_assistant_server_port: 8123
-
 # A list of additional volumes to mount into the docker container.  This is
 # useful for things like SSL certificates and custom css/image assets.
 home_assistant_additional_volumes: []

@@ -31,7 +31,7 @@
     state: started
     restart_policy: always
     timeout: 300
-    ports:
-      - "{{ home_assistant_server_port }}:8123" # Web admin panel
+    exposed_ports:
+      - 8123 # Web admin panel
     volumes: "{{ _home_assistant_docker_volumes }}"
     env: "{{ home_assistant_environment_variables }}"
