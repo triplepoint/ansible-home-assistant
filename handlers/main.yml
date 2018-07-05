@@ -4,10 +4,10 @@
     name: home-assistant
     image: "homeassistant/home-assistant:{{ home_assistant_docker_version }}"
     state: started
-    restart: yes
+    restart: true
     restart_policy: always
     timeout: 300
     exposed_ports:
-      - 8123 # Web admin panel
+      - 8123  # Web admin panel
     volumes: "{{ _home_assistant_docker_volumes }}"
     env: "{{ home_assistant_environment_variables }}"

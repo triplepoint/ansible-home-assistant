@@ -8,7 +8,7 @@
 - name: Ensure the home-assistant secrets file is in place
   template: src=secrets.yaml.j2 dest=/etc/home-assistant/secrets.yaml mode=0600
   notify: restart home-assistant
-  no_log: True
+  no_log: true
 
 - name: Ensure the home-assistant config file is in place
   template: src=configuration.yaml.j2 dest=/etc/home-assistant/configuration.yaml mode=0600
@@ -32,6 +32,6 @@
     restart_policy: always
     timeout: 300
     exposed_ports:
-      - 8123 # Web admin panel
+      - 8123  # Web admin panel
     volumes: "{{ _home_assistant_docker_volumes }}"
     env: "{{ home_assistant_environment_variables }}"
