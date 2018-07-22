@@ -16,11 +16,14 @@ def test_docker_service_running(host):
     assert service.is_running
 
 
-@pytest.mark.parametrize('socket_def', [
-    # listening on all ipv4 and ipv6 sockets on 6666
-    ('tcp://8123'),
-
-])
-def test_listening_sockets(host, socket_def):
-    socket = host.socket(socket_def)
-    assert socket.is_listening
+# We're no longer actively publishing ports - instead this role makes
+# ports available exposed to a proxy.  Commenting this out until I can
+# test with that proxy.
+# @pytest.mark.parametrize('socket_def', [
+#     # listening on all ipv4 and ipv6 sockets on 6666
+#     ('tcp://8123'),
+#
+# ])
+# def test_listening_sockets(host, socket_def):
+#     socket = host.socket(socket_def)
+#     assert socket.is_listening
