@@ -5,14 +5,15 @@
 - name: Ensure the home-assistant config directory is present
   file: path=/etc/home-assistant state=directory mode=0755
 
+- name: Ensure all the home-assistant configuration files are in place
+  template: src="{{ item.src }}" dest="/etc/home-assistant/{{ item.dest }}" mode=0600
+  notify: restart home-assistant
+  with_items: "{{ home_assistant_template_files }}"
+
 - name: Ensure the home-assistant secrets file is in place
   template: src=secrets.yaml.j2 dest=/etc/home-assistant/secrets.yaml mode=0600
   notify: restart home-assistant
   no_log: true
-
-- name: Ensure the home-assistant config file is in place
-  template: src=configuration.yaml.j2 dest=/etc/home-assistant/configuration.yaml mode=0600
-  notify: restart home-assistant
 
 - name: Define the default home-assistant docker volumes
   set_fact:
