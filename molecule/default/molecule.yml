@@ -23,19 +23,6 @@ provisioner:
   inventory:
     group_vars:
       all:
-        home_assistant_config_secrets:
-          test_secret_a: sekreta
-          test_secret_b: sekretb
-        home_assistant_configuration:
-          homeassistant:
-            name: HomePlace
-            latitude: 60.0000
-            longitude: -120.0000
-            elevation: 1000
-            unit_system: imperial
-            time_zone: America/Los_Angeles
-          http:
-            api_password: \!secret test_secret_b
 
 scenario:
   name: default
