@@ -1,17 +1,7 @@
 ---
 # What version of the homeassistant/home-assistant docker image should we
 # install?
-home_assistant_docker_version: 0.78.3
-
-# A list of additional volumes to mount into the docker container.  This is
-# useful for things like SSL certificates and custom css/image assets.
-home_assistant_additional_volumes: []
-# - "/some/directory:/some/mount:ro"
-# - "/some/file.yml:/some/mount/file.yml:ro"
-
-# A key/value set of environment variables and their values, which will be
-# set on the docker container.
-home_assistant_environment_variables: {}
+home_assistant_docker_version: 0.83.3
 
 # A list of src and dest values that define configuration templates to be
 # rendered into the /etc/home-assistant configuration directory.
@@ -34,3 +24,13 @@ home_assistant_template_files:
 # see https://home-assistant.io/docs/configuration/secrets/
 home_assistant_config_secrets: []
 # - somepassword: sooper_sekret
+
+# A list of additional volumes to mount into the docker container.  This is
+# useful for things like SSL certificates and custom css/image assets.
+home_assistant_additional_volumes: []
+# - "/some/directory:/some/mount:ro"
+# - "/some/file.yml:/some/mount/file.yml:ro"
+
+# A key/value set of environment variables and their values, which will be
+# set on the docker container.
+home_assistant_environment_variables: {}
