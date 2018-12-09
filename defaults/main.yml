@@ -33,4 +33,5 @@ home_assistant_additional_volumes: []
 
 # A key/value set of environment variables and their values, which will be
 # set on the docker container.
-home_assistant_environment_variables: {}
+home_assistant_environment_variables:
+  TZ: America/Los_Angeles

@@ -19,7 +19,6 @@
   set_fact:
     _home_assistant_docker_volumes:
       - "/etc/home-assistant:/config"
-      - "/etc/localtime:/etc/localtime:ro"
 
 - name: Append any additional volume mounts
   set_fact:
