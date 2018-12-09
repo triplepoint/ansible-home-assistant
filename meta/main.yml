@@ -1,6 +1,5 @@
 ---
 galaxy_info:
-  role_name: home-assistant
   author: Jonathan Hanson
   description: A deployment role for Home-Assistant.io.
   license: MIT

@@ -1,21 +1,19 @@
 ---
-sudo: required
-
-dist: xenial
-
 language: python
-
-python: 3.7
-
-services:
-  - docker
+sudo: required
+dist: xenial
+python: "3.7"
+services: docker
 
 env:
   global:
-    - PIPENV_IGNORE_VIRTUALENVS=1
+    - PIPENV_IGNORE_VIRTUALENVS: 1
+  matrix:
+    - MOLECULE_DISTRO: ubuntu1604
+    - MOLECULE_DISTRO: ubuntu1804
 
 before_install:
-  - pip install --upgrade "pipenv==2018.10.13"
+  - pip install --upgrade pipenv
 
 install:
   - yes | pipenv install --dev --deploy
