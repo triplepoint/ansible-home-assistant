@@ -3,14 +3,13 @@ url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
-
 [dev-packages]
-
+ansible = "*"
+docker = "*"
+molecule = "*"
+pylint = "*"
 
 [packages]
-ansible = "*"
-molecule = "*"
-docker = "*"
 
 [requires]
 python_version = "3.7"
