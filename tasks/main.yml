@@ -2,27 +2,33 @@
 - name: Ensure Docker-related python packages are present
   pip: name=docker
 
-- name: Ensure the home-assistant config directory is present
-  file: path=/etc/home-assistant state=directory mode=0755
-
-- name: Ensure all the home-assistant configuration files are in place
-  template: src="{{ item.src }}" dest="/etc/home-assistant/{{ item.dest }}" mode=0600
-  notify: restart home-assistant
-  with_items: "{{ home_assistant_template_files }}"
-
-- name: Ensure the home-assistant secrets file is in place
-  template: src=secrets.yaml.j2 dest=/etc/home-assistant/secrets.yaml mode=0600
-  notify: restart home-assistant
-  no_log: true
-
 - name: Define the default home-assistant docker volumes
   set_fact:
     _home_assistant_docker_volumes:
-      - "/etc/home-assistant:/config"
+      - "{{ home_assistant_host_config_dir }}:/config"
 
 - name: Append any additional volume mounts
   set_fact:
     _home_assistant_docker_volumes: "{{ _home_assistant_docker_volumes }} + {{ home_assistant_additional_volumes }}"
+
+- name: Ensure the home-assistant config directory is present
+  file: path={{ home_assistant_host_config_dir }} state=directory mode=0755
+
+- name: Ensure all the home-assistant configuration files are in place
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ home_assistant_host_config_dir }}/{{ item.dest }}"
+    mode: 0600
+  notify: restart home-assistant
+  with_items: "{{ home_assistant_template_files }}"
+
+- name: Ensure the home-assistant secrets file is in place
+  template:
+    src: "secrets.yaml.j2"
+    dest: "{{ home_assistant_host_config_dir }}/secrets.yaml"
+    mode: 0600
+  notify: restart home-assistant
+  no_log: true
 
 - name: ensure home-assistant is started
   docker_container:

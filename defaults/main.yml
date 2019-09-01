@@ -4,7 +4,7 @@
 home_assistant_docker_version: 0.98.1
 
 # A list of src and dest values that define configuration templates to be
-# rendered into the /etc/home-assistant configuration directory.
+# rendered into the {{home_assistant_host_config_dir}} configuration directory.
 # The `dest` values should be file names without the path, and the `src`
 # values should be any resolveable Ansible template file path.
 home_assistant_template_files:
@@ -35,3 +35,8 @@ home_assistant_additional_volumes: []
 # set on the docker container.
 home_assistant_environment_variables:
   TZ: America/Los_Angeles
+
+# Where on the host machine should the configuration directory be set.
+# This path gets volume-mounted into the Docker container, and is the
+# primary location home-assistant reads and writes its configuration.
+home_assistant_host_config_dir: "/etc/home-assistant"
