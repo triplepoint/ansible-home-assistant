@@ -1,8 +1,30 @@
 ---
-- name: Ensure Docker-related python packages are present
-  pip: name=docker
+- name: Ensure Docker-related Python packages are present
+  pip:
+    name:
+      - docker
+      - docker-compose
 
-- name: Define the default home-assistant docker volumes
+- name: Ensure the service config directory is present
+  file: path={{ home_assistant_host_config_dir }} state=directory mode=0755
+
+- name: Ensure all the service configuration files are in place
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ home_assistant_host_config_dir }}/{{ item.dest }}"
+    mode: 0600
+  with_items: "{{ home_assistant_template_files }}"
+  notify: restart home-assistant
+
+- name: Ensure the service secrets file is in place
+  template:
+    src: "secrets.yaml.j2"
+    dest: "{{ home_assistant_host_config_dir }}/secrets.yaml"
+    mode: 0600
+  notify: restart home-assistant
+  no_log: true
+
+- name: Define the default service docker volumes
   set_fact:
     _home_assistant_docker_volumes:
       - "{{ home_assistant_host_config_dir }}:/config"
@@ -11,33 +33,14 @@
   set_fact:
     _home_assistant_docker_volumes: "{{ _home_assistant_docker_volumes }} + {{ home_assistant_additional_volumes }}"
 
-- name: Ensure the home-assistant config directory is present
-  file: path={{ home_assistant_host_config_dir }} state=directory mode=0755
+- name: Ensure the docker-compose template directory exists
+  file: state=directory path="/opt/ansible-docker-compose/home-assistant"
 
-- name: Ensure all the home-assistant configuration files are in place
+- name: Ensure this service's docker-compose template is present
   template:
-    src: "{{ item.src }}"
-    dest: "{{ home_assistant_host_config_dir }}/{{ item.dest }}"
-    mode: 0600
-  notify: restart home-assistant
-  with_items: "{{ home_assistant_template_files }}"
+    src: docker-compose.yml.j2
+    dest: /opt/ansible-docker-compose/home-assistant/docker-compose.yml
 
-- name: Ensure the home-assistant secrets file is in place
-  template:
-    src: "secrets.yaml.j2"
-    dest: "{{ home_assistant_host_config_dir }}/secrets.yaml"
-    mode: 0600
-  notify: restart home-assistant
-  no_log: true
-
-- name: ensure home-assistant is started
-  docker_container:
-    name: home-assistant
-    image: "homeassistant/home-assistant:{{ home_assistant_docker_version }}"
-    state: started
-    restart_policy: always
-    timeout: 300
-    exposed_ports:
-      - "8123"  # Web admin panel
-    volumes: "{{ _home_assistant_docker_volumes }}"
-    env: "{{ home_assistant_environment_variables }}"
+- name: Ensure the service container(s) is/are started
+  docker_compose:
+    project_src: /opt/ansible-docker-compose/home-assistant

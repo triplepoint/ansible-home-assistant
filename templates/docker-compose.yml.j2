@@ -1,0 +1,25 @@
+version: '3.7'
+services:
+  home-assistant:
+    image: homeassistant/home-assistant:{{ home_assistant_docker_version }}
+    container_name: home-assistant
+    restart: always
+    ports:
+      - "8123"             # Web admin panel
+{% if home_assistant_external_default_network %}
+    networks:
+      - {{ home_assistant_external_default_network }}
+{% endif %}
+    volumes:
+{% for vol in _home_assistant_docker_volumes %}
+      - {{ vol }}
+{% endfor %}
+    environment:
+{% for k, v in home_assistant_environment_variables.items() %}
+      - {{ k }}={{ v }}
+{% endfor %}
+{% if home_assistant_external_default_network %}
+networks:
+  {{ home_assistant_external_default_network }}:
+    external: true
+{% endif %}
