@@ -6,6 +6,8 @@ services:
     restart: always
     ports:
       - "8123"             # Web admin panel
+      - "8300"             # Emulated Hue
+      - "51827"            # Homekit
 {% if home_assistant_external_default_network %}
     networks:
       - {{ home_assistant_external_default_network }}
