@@ -43,4 +43,7 @@ home_assistant_host_config_dir: "/etc/home-assistant"
 
 # If set to a string, the created Docker container will attach to a
 # pre-existing default Docker network, instead of creating its own.
-home_assistant_external_default_network: ""
+home_assistant_network_name: ""
+
+# Labels to put on the application containers
+home_assistant_container_labels: []

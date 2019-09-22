@@ -3,14 +3,19 @@ services:
   home-assistant:
     image: homeassistant/home-assistant:{{ home_assistant_docker_version }}
     container_name: home-assistant
+{% if home_assistant_container_labels %}
+    labels:
+{% for label in home_assistant_container_labels %}
+      - {{ label }}
+{% endfor %}
     restart: always
     ports:
       - "8123"             # Web admin panel
       - "8300"             # Emulated Hue
       - "51827"            # Homekit
-{% if home_assistant_external_default_network %}
+{% if home_assistant_network_name %}
     networks:
-      - {{ home_assistant_external_default_network }}
+      - {{ home_assistant_network_name }}
 {% endif %}
     volumes:
 {% for vol in _home_assistant_docker_volumes %}
@@ -20,8 +25,8 @@ services:
 {% for k, v in home_assistant_environment_variables.items() %}
       - {{ k }}={{ v }}
 {% endfor %}
-{% if home_assistant_external_default_network %}
+{% if home_assistant_network_name %}
 networks:
-  {{ home_assistant_external_default_network }}:
+  {{ home_assistant_network_name }}:
     external: true
 {% endif %}
