@@ -22,7 +22,7 @@ services:
 {% for vol in _home_assistant_docker_volumes %}
       - {{ vol }}
 {% endfor %}
-{% if home_assistant_environment_vars %}
+{% if home_assistant_environment_variables %}
     environment:
 {% for k, v in home_assistant_environment_variables.items() %}
       - {{ k }}={{ v }}
