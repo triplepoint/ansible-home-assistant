@@ -8,6 +8,7 @@ services:
 {% for label in home_assistant_container_labels %}
       - {{ label }}
 {% endfor %}
+{% endif %}
     restart: always
     ports:
       - "8123"             # Web admin panel
@@ -21,10 +22,12 @@ services:
 {% for vol in _home_assistant_docker_volumes %}
       - {{ vol }}
 {% endfor %}
+{% if home_assistant_environment_vars %}
     environment:
 {% for k, v in home_assistant_environment_variables.items() %}
       - {{ k }}={{ v }}
 {% endfor %}
+{% endif %}
 {% if home_assistant_network_name %}
 networks:
   {{ home_assistant_network_name }}:
