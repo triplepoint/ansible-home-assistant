@@ -5,6 +5,13 @@
       - docker
       - docker-compose
 
+- name: Ensure the Docker container image is up to date
+  docker_image:
+    name: homeassistant/home-assistant
+    source: pull
+    tag: "{{ home_assistant_docker_version }}"
+  notify: restart home-assistant
+
 - name: Ensure the service config directory is present
   file: path={{ home_assistant_host_config_dir }} state=directory mode=0755
 

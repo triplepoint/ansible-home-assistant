@@ -1,7 +1,8 @@
 ---
 # What version of the homeassistant/home-assistant docker image should we
 # install?
-home_assistant_docker_version: 0.98.5
+# https://hub.docker.com/r/homeassistant/home-assistant
+home_assistant_docker_version: "stable"
 
 # A list of src and dest values that define configuration templates to be
 # rendered into the {{home_assistant_host_config_dir}} configuration directory.
