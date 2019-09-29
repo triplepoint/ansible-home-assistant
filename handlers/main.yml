@@ -3,3 +3,4 @@
   docker_compose:
     project_src: /opt/ansible-docker-compose/home-assistant
     restarted: yes
+    pull: yes
