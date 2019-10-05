@@ -1,4 +1,4 @@
-# Ansible Home Assistant [![Build Status](https://travis-ci.org/triplepoint/ansible-home-assistant.svg?branch=master)](https://travis-ci.org/triplepoint/ansible-home-assistant)
+# Ansible Home Assistant
 A deployment role for Home-Assistant.io.
 
 ## Requirements
