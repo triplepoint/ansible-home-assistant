@@ -148,10 +148,10 @@
         },
         "click-help-colors": {
             "hashes": [
-                "sha256:258d5f4d79e54af8d017c07313456db22e636c964dd0808a2fb0aefc654ee30c",
-                "sha256:979b3837da6c6cfccd59f4f20e28ff06c6fc4c240c7d2660b3a2c2b337ae5dcb"
+                "sha256:f41ae922e649a9b48119a66109532613ccd0d414f628eafddb897bbf6f577bd1",
+                "sha256:fa574d591ee1d80e6da035df9f471cf0248060c177ff8f99008e45b8401c7fe2"
             ],
-            "version": "==0.6"
+            "version": "==0.7"
         },
         "colorama": {
             "hashes": [
