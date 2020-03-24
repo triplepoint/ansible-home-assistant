@@ -5,8 +5,6 @@ dependency:
     role-file: molecule/requirements.yml
 driver:
   name: docker
-lint:
-  name: yamllint
 platforms:
   - name: instance
     image: "geerlingguy/docker-${MOLECULE_DISTRO:-ubuntu1804}-ansible:latest"
@@ -20,9 +18,10 @@ platforms:
     pre_build_image: true
 provisioner:
   name: ansible
-  lint:
-    name: ansible-lint
 verifier:
   name: testinfra
-  lint:
-    name: flake8
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+  flake8
