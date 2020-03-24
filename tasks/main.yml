@@ -6,7 +6,10 @@
       - docker-compose
 
 - name: Ensure the service config directory is present
-  file: path={{ home_assistant_host_config_dir }} state=directory mode=0755
+  file:
+    path: "{{ home_assistant_host_config_dir }}"
+    state: directory
+    mode: 0755
 
 - name: Ensure all the service configuration files are in place
   template:
@@ -34,7 +37,9 @@
     _home_assistant_docker_volumes: "{{ _home_assistant_docker_volumes }} + {{ home_assistant_additional_volumes }}"
 
 - name: Ensure the docker-compose template directory exists
-  file: state=directory path="/opt/ansible-docker-compose/home-assistant"
+  file:
+    state: directory
+    path: "/opt/ansible-docker-compose/home-assistant"
 
 - name: Ensure this service's docker-compose template is present
   template:
