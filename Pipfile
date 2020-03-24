@@ -7,7 +7,11 @@ name = "pypi"
 pylint = "*"
 
 [packages]
+ansible-lint = "*"
+flake8 = "*"
 molecule = {extras = ["docker"],version = "*"}
+testinfra = "*"
+yamllint = "*"
 
 [requires]
 python_version = "3.8"
