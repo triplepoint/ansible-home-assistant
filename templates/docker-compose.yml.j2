@@ -18,10 +18,12 @@ services:
     networks:
       - {{ home_assistant_network_name }}
 {% endif %}
+{% if _home_assistant_docker_volumes %}
     volumes:
 {% for vol in _home_assistant_docker_volumes %}
       - {{ vol }}
 {% endfor %}
+{% endif %}
 {% if home_assistant_environment_variables %}
     environment:
 {% for k, v in home_assistant_environment_variables.items() %}
