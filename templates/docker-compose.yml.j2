@@ -24,6 +24,12 @@ services:
       - {{ vol }}
 {% endfor %}
 {% endif %}
+{% if home_assistant_devices %}
+    devices:
+{% for dev in home_assistant_devices %}
+     - "{{ dev }}"
+{% endfor %}
+{% endif %}
 {% if home_assistant_environment_variables %}
     environment:
 {% for k, v in home_assistant_environment_variables.items() %}
