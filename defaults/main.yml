@@ -8,17 +8,13 @@ home_assistant_docker_version: "stable"
 # rendered into the {{home_assistant_host_config_dir}} configuration directory.
 # The `dest` values should be file names without the path, and the `src`
 # values should be any resolveable Ansible template file path.
-home_assistant_template_files:
-  - src: configuration.yaml.j2
-    dest: configuration.yaml
-  - src: automations.yaml.j2
-    dest: automations.yaml
-  - src: customize.yaml.j2
-    dest: customize.yaml
-  - src: groups.yaml.j2
-    dest: groups.yaml
-  - src: scripts.yaml.j2
-    dest: scripts.yaml
+# Note that Home Assistant will create several config files of its own, the first
+# time it's run, if they don't exist already.  This configuration shouldn't be
+# used to generate stock config files, and is here to allow custom configuration
+# to be added.
+home_assistant_template_files: []
+  # - src: configuration.yaml.j2
+  #   dest: configuration.yaml
 
 # A list of key/value pairs, suitable for being a reference secrets file
 # to be referenced by home-assistant's configuration file.
