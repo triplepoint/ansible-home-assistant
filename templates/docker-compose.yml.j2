@@ -9,7 +9,9 @@ services:
       - {{ label }}
 {% endfor %}
 {% endif %}
-    restart: always
+    restart: unless-stopped
+    privileged: true
+    network_mode: host
 {% if home_assistant_ports %}
     ports:
 {% for port in home_assistant_ports %}
