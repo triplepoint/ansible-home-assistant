@@ -32,6 +32,10 @@ home_assistant_additional_volumes: []
 home_assistant_devices: []
 # - "/dev/ttyUSB1:/dev/ttyUSB1"
 
+# A list of port mappings to expose into the container.
+home_assistant_ports: []
+# - "8123:8123"
+
 # A key/value set of environment variables and their values, which will be
 # set on the docker container.
 home_assistant_environment_variables:
