@@ -10,10 +10,12 @@ services:
 {% endfor %}
 {% endif %}
     restart: always
+{% if home_assistant_ports %}
     ports:
-      - "8123"             # Web admin panel
-      - "8300"             # Emulated Hue
-      - "51827"            # Homekit
+{% for port in home_assistant_ports %}
+     - "{{ port }}"
+{% endfor %}
+{% endif %}
 {% if home_assistant_network_name %}
     networks:
       - {{ home_assistant_network_name }}
