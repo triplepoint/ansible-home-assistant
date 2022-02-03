@@ -40,6 +40,8 @@ home_assistant_ports:
 # set on the docker container.
 home_assistant_environment_variables:
   TZ: America/Los_Angeles
+  # as jemalloc can cause issues on certain hardware, it can be disable adding this
+  # DISABLE_JEMALLOC: true
 
 # Where on the host machine should the configuration directory be set.
 # This path gets volume-mounted into the Docker container, and is the
