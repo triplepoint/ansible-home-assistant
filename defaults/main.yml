@@ -46,5 +46,8 @@ home_assistant_host_config_dir: "/etc/home-assistant"
 # pre-existing default Docker network, instead of creating its own.
 home_assistant_network_name: ""
 
+# If set, docker-compose will use this as the container's network_mode
+home_assistant_network_mode: ""
+
 # Labels to put on the application containers
 home_assistant_container_labels: []

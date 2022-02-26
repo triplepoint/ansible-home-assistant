@@ -1,10 +1,4 @@
 ---
-- name: Ensure Docker-related Python packages are present
-  pip:
-    name:
-      - docker
-      - docker-compose
-
 - name: Ensure the service config directory is present
   file:
     path: "{{ home_assistant_host_config_dir }}"
