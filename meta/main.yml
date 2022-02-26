@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   role_name: home_assistant
+  namespace: triplepoint
   author: Jonathan Hanson
   description: A deployment role for Home-Assistant.io.
   license: MIT
