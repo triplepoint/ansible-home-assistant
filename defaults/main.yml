@@ -42,12 +42,22 @@ home_assistant_environment_variables:
 # primary location home-assistant reads and writes its configuration.
 home_assistant_host_config_dir: "/etc/home-assistant"
 
-# If set to a string, the created Docker container will attach to a
-# pre-existing default Docker network, instead of creating its own.
-home_assistant_network_name: ""
-
-# If set, docker-compose will use this as the container's network_mode
-home_assistant_network_mode: ""
-
 # Labels to put on the application containers
 home_assistant_container_labels: []
+
+# Should we use host network mode?
+home_assistant_host_network_mode: false
+
+# If set to a string, the created Docker container will attach to a
+# pre-existing default Docker network, instead of creating its own.
+# Note that this value won't matter if home_assistant_host_network_mode
+# is true.
+home_assistant_network_name: ""
+
+# Ports to expose on the docker container
+# Note that this value won't matter if home_assistant_host_network_mode
+# is true.
+home_assistant_ports:
+ - "8123"             # Web admin panel
+ - "8300"             # Emulated Hue
+ - "51827"            # Homekit

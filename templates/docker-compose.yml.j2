@@ -10,16 +10,18 @@ services:
 {% endfor %}
 {% endif %}
     restart: always
+{% if home_assistant_network_name and not home_assistant_host_network_mode %}
     ports:
-      - "8123"             # Web admin panel
-      - "8300"             # Emulated Hue
-      - "51827"            # Homekit
-{% if home_assistant_network_name %}
+{% for port in home_assistant_network_name %}
+      - "{{ port }}"
+{% endfor %}
+{% endif %}
+{% if home_assistant_network_name and not home_assistant_host_network_mode %}
     networks:
       - {{ home_assistant_network_name }}
 {% endif %}
-{% if home_assistant_network_mode %}
-    network_mode: {{ home_assistant_network_mode }}
+{% if home_assistant_host_network_mode %}
+    network_mode: host
 {% endif %}
 {% if _home_assistant_docker_volumes %}
     volumes:
@@ -39,7 +41,7 @@ services:
       - {{ k }}={{ v }}
 {% endfor %}
 {% endif %}
-{% if home_assistant_network_name %}
+{% if home_assistant_network_name and not home_assistant_host_network_mode %}
 networks:
   {{ home_assistant_network_name }}:
     external: true
