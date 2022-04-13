@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   home-assistant:
-    image: homeassistant/home-assistant:{{ home_assistant_docker_version }}
+    image: ghcr.io/home-assistant/home-assistant:{{ home_assistant_docker_version }}
     container_name: home-assistant
 {% if home_assistant_container_labels %}
     labels:
