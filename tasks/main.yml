@@ -28,7 +28,7 @@
 
 - name: Append any additional volume mounts
   set_fact:
-    _home_assistant_docker_volumes: "{{ _home_assistant_docker_volumes }} + {{ home_assistant_additional_volumes }}"
+    _home_assistant_docker_volumes: "{{ _home_assistant_docker_volumes | union(home_assistant_additional_volumes) }}"
 
 - name: Ensure the docker-compose template directory exists
   file:
