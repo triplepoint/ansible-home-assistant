@@ -3,6 +3,7 @@ services:
   home-assistant:
     image: ghcr.io/home-assistant/home-assistant:{{ home_assistant_docker_version }}
     container_name: home-assistant
+    privileged: true
 {% if home_assistant_container_labels %}
     labels:
 {% for label in home_assistant_container_labels %}
