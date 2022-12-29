@@ -1,5 +1,5 @@
 ---
-- name: restart home-assistant
+- name: Restart home-assistant
   docker_compose:
     project_src: /opt/ansible-docker-compose/home-assistant
     restarted: true

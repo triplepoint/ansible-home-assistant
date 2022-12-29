@@ -1,43 +1,43 @@
 ---
 - name: Ensure the service config directory is present
-  file:
+  ansible.builtin.file:
     path: "{{ home_assistant_host_config_dir }}"
     state: directory
     mode: 0755
 
 - name: Ensure all the service configuration files are in place
-  template:
+  ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ home_assistant_host_config_dir }}/{{ item.dest }}"
     mode: 0600
   with_items: "{{ home_assistant_template_files }}"
-  notify: restart home-assistant
+  notify: Restart home-assistant
 
 - name: Ensure the service secrets file is in place
-  template:
+  ansible.builtin.template:
     src: "secrets.yaml.j2"
     dest: "{{ home_assistant_host_config_dir }}/secrets.yaml"
     mode: 0600
-  notify: restart home-assistant
+  notify: Restart home-assistant
   no_log: true
 
 - name: Define the default service docker volumes
-  set_fact:
+  ansible.builtin.set_fact:
     _home_assistant_docker_volumes:
       - "{{ home_assistant_host_config_dir }}:/config"
 
 - name: Append any additional volume mounts
-  set_fact:
+  ansible.builtin.set_fact:
     _home_assistant_docker_volumes: "{{ _home_assistant_docker_volumes | union(home_assistant_additional_volumes) }}"
 
 - name: Ensure the docker-compose template directory exists
-  file:
+  ansible.builtin.file:
     state: directory
     path: "/opt/ansible-docker-compose/home-assistant"
     mode: 0755
 
 - name: Ensure this service's docker-compose template is present
-  template:
+  ansible.builtin.template:
     src: docker-compose.yml.j2
     dest: /opt/ansible-docker-compose/home-assistant/docker-compose.yml
     mode: 0644
