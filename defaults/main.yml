@@ -16,6 +16,9 @@ home_assistant_template_files: []
   # - src: configuration.yaml.j2
   #   dest: configuration.yaml
 
+# same as the template files, but not-templated
+home_assistant_files: []
+
 # A list of key/value pairs, suitable for being a reference secrets file
 # to be referenced by home-assistant's configuration file.
 # see https://home-assistant.io/docs/configuration/secrets/

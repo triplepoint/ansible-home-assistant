@@ -1,9 +1,12 @@
 ---
 - name: Ensure the service config directory is present
   ansible.builtin.file:
-    path: "{{ home_assistant_host_config_dir }}"
+    path: "{{ item }}"
     state: directory
     mode: 0755
+  with_items:
+  - "{{ home_assistant_host_config_dir }}"
+  - "{{ home_assistant_host_config_dir }}/custom_templates"
 
 - name: Ensure all the service configuration files are in place
   ansible.builtin.template:
@@ -11,6 +14,14 @@
     dest: "{{ home_assistant_host_config_dir }}/{{ item.dest }}"
     mode: 0600
   with_items: "{{ home_assistant_template_files }}"
+  notify: Restart home-assistant
+
+- name: Ensure all the service configuration files are in place
+  ansible.builtin.copy:
+    src: "{{ item.src }}"
+    dest: "{{ home_assistant_host_config_dir }}/{{ item.dest }}"
+    mode: 0600
+  with_items: "{{ home_assistant_files }}"
   notify: Restart home-assistant
 
 - name: Ensure the service secrets file is in place
